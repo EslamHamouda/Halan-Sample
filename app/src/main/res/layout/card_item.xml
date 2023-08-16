@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <com.google.android.material.card.MaterialCardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/materialCardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="#FFFAEB"
+        app:cardCornerRadius="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/customToolbar">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tv_promoName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="85dp"
+                android:lineHeight="28sp"
+                android:lineSpacingExtra="-1sp"
+                android:text="عروض قباني للاثاث"
+                android:textAlignment="viewStart"
+                android:textColor="#A22B90"
+                android:textFontWeight="500"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toStartOf="@+id/shapeableImageView"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/shapeableImageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="11dp"
+                android:layout_marginEnd="12dp"
+                android:clipToOutline="true"
+                android:src="@drawable/ill_spot_commerce_percentage"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/materialTextView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="44dp"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/rounded_corner_background_25dp"
+                android:gravity="center"
+                android:lineHeight="22.4sp"
+                android:lineSpacingExtra="2sp"
+                android:paddingHorizontal="16dp"
+                android:paddingVertical="3dp"
+                android:text="يكتب هنا نص"
+                android:textColor="#A22B90"
+                android:textFontWeight="500"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/tv_promoName"
+                app:layout_constraintTop_toBottomOf="@+id/tv_promoName" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:background="@drawable/rounded_corner_background_25dp"
+                android:gravity="center"
+                android:lineHeight="22.4sp"
+                android:lineSpacingExtra="2sp"
+                android:paddingHorizontal="16dp"
+                android:paddingVertical="3dp"
+                android:text="يكتب هنا نص"
+                android:textColor="#A22B90"
+                android:textFontWeight="500"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="@+id/materialTextView2"
+                app:layout_constraintStart_toEndOf="@+id/materialTextView2" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
