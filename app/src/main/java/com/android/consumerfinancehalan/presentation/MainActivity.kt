@@ -1,7 +1,8 @@
-package com.android.consumerfinancehalan
+package com.android.consumerfinancehalan.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.android.consumerfinancehalan.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
