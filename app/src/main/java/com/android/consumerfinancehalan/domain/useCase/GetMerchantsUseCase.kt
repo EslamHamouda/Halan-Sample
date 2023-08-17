@@ -11,16 +11,7 @@ import javax.inject.Inject
 class GetMerchantsUseCase @Inject constructor(private val repository: DetailsRepository) {
     suspend operator fun invoke(vendorId:String): ApiResponse<BaseResponse<List<MerchantModel>>> {
         return try {
-            val responseDTO = repository.getMerchants(vendorId)
-            val merchantModelList = responseDTO.data?.merchants?.map { dto->
-                MerchantDtoToModel().mapTo(dto)
-            }
-            val responseModel=BaseResponse(
-                status = responseDTO.status,
-                message = responseDTO.message,
-                data = merchantModelList
-            )
-            ApiResponse.Success(responseModel)
+            ApiResponse.Success(repository.getMerchants(vendorId))
         } catch (throwable: Throwable) {
             ApiResponse.Failure(throwable)
         }
