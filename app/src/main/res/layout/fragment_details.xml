@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".presentation.details.DetailsFragment">
 
@@ -10,6 +12,8 @@
         android:id="@+id/customToolbar"
         android:layout_width="0dp"
         android:layout_height="48dp"
+        android:background="@color/white"
+        android:elevation="1dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -18,11 +22,10 @@
             android:id="@+id/tv_vendorName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="64dp"
-            android:layout_marginEnd="64dp"
+            android:layout_marginHorizontal="64dp"
             android:lineHeight="25.6sp"
             android:lineSpacingExtra="2sp"
-            android:text="قباني للاثاث"
+            tools:text="قباني للاثاث"
             android:textAlignment="center"
             android:textColor="#1C211F"
             android:textFontWeight="500"
@@ -36,11 +39,12 @@
             android:id="@+id/iv_nav_back"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:src="@drawable/icon_nav_back"
             android:scaleX="-1"
+            android:src="@drawable/icon_nav_back"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.recyclerview.widget.RecyclerView
@@ -56,4 +60,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/customToolbar" />
 
+    <include
+        android:id="@+id/progressBar"
+        layout="@layout/progressbar_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

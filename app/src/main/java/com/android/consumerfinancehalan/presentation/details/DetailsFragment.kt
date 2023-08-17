@@ -1,62 +1,84 @@
 package com.android.consumerfinancehalan.presentation.details
 
+import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
+import androidx.core.content.res.ResourcesCompat
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.flowWithLifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.DividerItemDecoration
 import com.android.consumerfinancehalan.R
+import com.android.consumerfinancehalan.databinding.FragmentDetailsBinding
+import com.android.consumerfinancehalan.utils.ApiResponse
+import com.android.consumerfinancehalan.utils.hideProgressBar
+import com.android.consumerfinancehalan.utils.showProgressBar
+import com.android.consumerfinancehalan.utils.showSnackBar
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [DetailsFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 @AndroidEntryPoint
 class DetailsFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
-
+    private lateinit var binding: FragmentDetailsBinding
+    private val viewModel: DetailsViewModel by viewModels()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_details, container, false)
+        binding = FragmentDetailsBinding.inflate(inflater)
+        viewModel.getMerchants("63d3dc61aa41feb6018b6770")
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment DetailsFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            DetailsFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        getMerchantsResponse()
     }
+
+    @RequiresApi(Build.VERSION_CODES.M)
+    private fun getMerchantsResponse() {
+        lifecycleScope.launch {
+            viewModel.getMerchantsResponse.flowWithLifecycle(
+                lifecycle,
+                Lifecycle.State.STARTED
+            )
+                .collectLatest {
+                    when (it) {
+                        is ApiResponse.Loading -> {
+                            if(it.isLoading)
+                                binding.progressBar.progressBar.showProgressBar()
+                            else
+                                binding.progressBar.progressBar.hideProgressBar()
+                        }
+                        is ApiResponse.Success -> {
+                            binding.tvVendorName.text = it.value?.data?.get(0)?.vendorArabicName
+                            binding.rvMerchants.adapter= it.value?.data?.let { it1 ->
+                               MerchantsAdapter(
+                                   it1
+                               )
+                           }
+                            binding.rvMerchants.addItemDecoration(getDividerItemDecoration())
+                        }
+                        is ApiResponse.Failure -> {
+                            it.throwable.message?.let { it1 -> showSnackBar(it1, requireActivity()) }
+                        }
+                    }
+                }
+        }
+    }
+
+    private fun getDividerItemDecoration():DividerItemDecoration{
+        val divider=DividerItemDecoration(requireContext(),DividerItemDecoration.VERTICAL)
+        ResourcesCompat.getDrawable(resources,R.drawable.separator, null)
+            ?.let { it1 -> divider.setDrawable(it1) }
+        return divider
+    }
+
 }

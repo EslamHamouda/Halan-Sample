@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/materialTextView"
+            android:id="@+id/tv_merchantName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:lineHeight="25.6sp"
@@ -28,6 +28,7 @@
             android:textSize="16sp"/>
 
         <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_merchantAddress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:lineHeight="22.4sp"
@@ -42,19 +43,23 @@
         android:id="@+id/iv_map"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:clickable="true"
         android:layout_marginEnd="16dp"
         android:src="@drawable/icon_map"
         app:layout_constraintBottom_toBottomOf="@+id/iv_phone"
         app:layout_constraintEnd_toStartOf="@+id/iv_phone"
-        app:layout_constraintTop_toTopOf="@+id/iv_phone" />
+        app:layout_constraintTop_toTopOf="@+id/iv_phone"
+        android:focusable="true" />
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/iv_phone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:clickable="true"
         android:layout_marginVertical="21dp"
         android:src="@drawable/icon_phone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:focusable="true" />
 </androidx.constraintlayout.widget.ConstraintLayout>
