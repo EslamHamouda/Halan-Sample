@@ -25,14 +25,16 @@ import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class DetailsFragment : Fragment() {
-    private lateinit var binding: FragmentDetailsBinding
+    private var _binding: FragmentDetailsBinding?=null
+    private val binding get() = _binding!!
+
     private val viewModel: DetailsViewModel by viewModels()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        binding = FragmentDetailsBinding.inflate(inflater)
+        _binding = FragmentDetailsBinding.inflate(inflater)
         viewModel.getMerchants("63d3dc61aa41feb6018b6770")
         return binding.root
     }
@@ -79,6 +81,11 @@ class DetailsFragment : Fragment() {
         ResourcesCompat.getDrawable(resources,R.drawable.separator, null)
             ?.let { it1 -> divider.setDrawable(it1) }
         return divider
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
 }
