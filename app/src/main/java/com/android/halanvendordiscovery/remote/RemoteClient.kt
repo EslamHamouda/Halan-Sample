@@ -1,5 +1,6 @@
 package com.android.halanvendordiscovery.remote
 
+import com.android.halanvendordiscovery.BuildConfig
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import dagger.Module
@@ -17,9 +18,6 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object RemoteClient {
-
-    private const val BASE_URL = "https://api.halan.io/bff-mobile/vendor-Discovery/public/"
-
     @Provides
     @Singleton
     fun provideGsonBuilder(): Gson {
@@ -54,7 +52,7 @@ object RemoteClient {
     fun provideRetrofit(okHttpClient: OkHttpClient, gson: Gson)
     : Retrofit {
         return Retrofit.Builder()
-            .baseUrl(BASE_URL)
+            .baseUrl(BuildConfig.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create(gson))
             .client(okHttpClient)
             .build()
