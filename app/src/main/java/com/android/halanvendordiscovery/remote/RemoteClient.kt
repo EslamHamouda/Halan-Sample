@@ -28,13 +28,13 @@ object RemoteClient {
     @Provides
     @Singleton
     fun provideLoggingInterceptor(): HttpLoggingInterceptor {
-        return if (BuildConfig.DEBUG){
+        return if (BuildConfig.DEBUG) {
             HttpLoggingInterceptor()
                 .apply {
                     setLevel(HttpLoggingInterceptor.Level.BODY)
                     setLevel(HttpLoggingInterceptor.Level.HEADERS)
                 }
-        }else {
+        } else {
             HttpLoggingInterceptor()
                 .apply {
                     setLevel(HttpLoggingInterceptor.Level.NONE)
