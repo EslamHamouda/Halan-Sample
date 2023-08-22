@@ -1,4 +1,4 @@
-package com.android.halanvendordiscovery.domain.model
+package com.android.halanvendordiscovery.domain.details.model
 
 data class MerchantModel(
     val name            : String?   = null,

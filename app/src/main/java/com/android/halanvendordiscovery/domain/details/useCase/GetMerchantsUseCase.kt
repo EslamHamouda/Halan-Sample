@@ -1,7 +1,7 @@
-package com.android.halanvendordiscovery.domain.useCase
+package com.android.halanvendordiscovery.domain.details.useCase
 
-import com.android.halanvendordiscovery.domain.model.MerchantModel
-import com.android.halanvendordiscovery.domain.repo.DetailsRepository
+import com.android.halanvendordiscovery.domain.details.model.MerchantModel
+import com.android.halanvendordiscovery.domain.details.repo.DetailsRepository
 import javax.inject.Inject
 
 class GetMerchantsUseCase @Inject constructor(private val repository: DetailsRepository) {
