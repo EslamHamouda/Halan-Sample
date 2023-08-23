@@ -18,5 +18,5 @@ data class MerchantRemoteModel(
     var categories: String?,
     var merchantId: String?,
     var vendor: VendorRemoteModel?,
-    var location: VendorRemoteModel?
+    var location: LocationRemoteModel?
 )

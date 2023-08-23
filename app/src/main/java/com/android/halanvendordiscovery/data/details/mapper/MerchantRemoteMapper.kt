@@ -3,7 +3,7 @@ package com.android.halanvendordiscovery.data.details.mapper
 import com.android.halanvendordiscovery.data.details.model.response.MerchantRemoteModel
 import com.android.halanvendordiscovery.domain.details.model.MerchantDomainModel
 
-object MerchantDtoMapper{
+object MerchantRemoteMapper{
     fun toDomain(from:MerchantRemoteModel) = MerchantDomainModel(
         name = from.name,
         arabicName = from.arabicName,
