@@ -1,12 +1,12 @@
 package com.android.halanvendordiscovery.domain.details.model
 
 data class MerchantModel(
-    val name            : String?   = null,
-    val arabicName      : String?   = null,
-    val address         : String?   = null,
-    val longitude       : Double?   = null,
-    val latitude        : Double?   = null,
-    val phoneNumber     : String?   = null,
-    val vendorName      : String?   = null,
-    val vendorArabicName: String?   = null,
+    val name            : String,
+    val arabicName      : String,
+    val address         : String,
+    val longitude       : Double,
+    val latitude        : Double,
+    val phoneNumber     : String,
+    val vendorName      : String,
+    val vendorArabicName: String,
 )
