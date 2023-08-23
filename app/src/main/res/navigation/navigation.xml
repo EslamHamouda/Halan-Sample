@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/vendorDiscovery_navGraph">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/vendorDiscovery_navGraph"
+    app:startDestination="@id/detailsFragment">
 
+    <fragment
+        android:id="@+id/detailsFragment"
+        android:name="com.android.halanvendordiscovery.presentation.details.ui.DetailsFragment"
+        android:label="fragment_details"
+        tools:layout="@layout/fragment_details" />
 </navigation>
