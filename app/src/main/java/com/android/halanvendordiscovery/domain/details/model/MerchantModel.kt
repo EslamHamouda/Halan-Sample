@@ -1,6 +1,6 @@
 package com.android.halanvendordiscovery.domain.details.model
 
-data class MerchantModel(
+data class MerchantDomainModel(
     val name            : String,
     val arabicName      : String,
     val address         : String,
