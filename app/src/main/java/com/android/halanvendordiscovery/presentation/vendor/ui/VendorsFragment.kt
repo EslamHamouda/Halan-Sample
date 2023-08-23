@@ -1,10 +1,11 @@
-package com.android.halanvendordiscovery.vendor.ui
+package com.android.halanvendordiscovery.presentation.vendor.ui
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import com.android.halanvendordiscovery.R
 
 class VendorsFragment : Fragment() {
