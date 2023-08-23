@@ -9,16 +9,16 @@ import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.android.halanvendordiscovery.databinding.ListItemMerchantBinding
-import com.android.halanvendordiscovery.domain.details.model.MerchantModel
+import com.android.halanvendordiscovery.domain.details.model.MerchantDomainModel
 
 class MerchantsAdapter(
-   private val list: List<MerchantModel>
+   private val list: List<MerchantDomainModel>
 
 ) : RecyclerView.Adapter<MerchantsAdapter.ViewHolder>() {
     inner class ViewHolder(private val binding: ListItemMerchantBinding) :
         RecyclerView.ViewHolder(binding.root) {
         @RequiresApi(Build.VERSION_CODES.O)
-        fun bind(item: MerchantModel) {
+        fun bind(item: MerchantDomainModel) {
             binding.tvMerchantName.text=item.arabicName
             binding.tvMerchantAddress.text=item.address
             binding.ivPhone.setOnClickListener {
