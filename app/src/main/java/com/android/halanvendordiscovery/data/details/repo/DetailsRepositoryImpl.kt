@@ -1,6 +1,6 @@
 package com.android.halanvendordiscovery.data.details.repo
 
-import com.android.halanvendordiscovery.data.details.mapper.toDomain
+import com.android.halanvendordiscovery.data.details.mapper.MerchantDtoMapper
 import com.android.halanvendordiscovery.data.details.service.DetailsService
 import com.android.halanvendordiscovery.domain.details.repo.DetailsRepository
 import kotlinx.coroutines.Dispatchers
@@ -14,6 +14,6 @@ class DetailsRepositoryImpl @Inject constructor(private val service: DetailsServ
     override suspend fun getMerchants(vendorId: String) =
         withContext(Dispatchers.IO) {
                 val merchantsResponse = service.getMerchants(vendorId)
-                merchantsResponse.data?.merchants?.map { dto -> dto.toDomain() }.orEmpty()
+                merchantsResponse.data?.merchants?.map { dto -> MerchantDtoMapper.toDomain(dto) }.orEmpty()
         }
 }

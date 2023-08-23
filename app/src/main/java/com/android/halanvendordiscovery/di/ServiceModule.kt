@@ -9,7 +9,7 @@ import retrofit2.Retrofit
 
 @Module
 @InstallIn(SingletonComponent::class)
-object NetworkModule {
+object ServiceModule {
     @Provides
     fun detailsService(retrofit: Retrofit): DetailsService =
         retrofit.create(DetailsService::class.java)
