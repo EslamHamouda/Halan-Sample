@@ -16,7 +16,7 @@
         android:textSize="16sp"
         android:lineHeight="25.6sp"
         android:textFontWeight="500"
-        android:textColor="#1C211F"
+        android:textColor="@color/vendor_header"
         tools:text="Dummy text"
 
 
@@ -33,7 +33,7 @@
         android:textSize="14sp"
         android:textFontWeight="400"
         android:lineHeight="22.4sp"
-        android:textColor="#5E6160"
+        android:textColor="@color/vendor_subheader"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

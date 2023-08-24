@@ -7,4 +7,8 @@
     <color name="inactive_category_card">#F9FAFC</color>
     <color name="active_category_card">#EBF8F4</color>
     <color name="active_category_card_border">#00A970</color>
+    <color name="toolbar_title">#061A40</color>
+    <color name="vendor_subheader">#5E6160</color>
+    <color name="vendor_header">#1C211F</color>
+
 </resources>
