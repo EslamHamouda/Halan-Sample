@@ -1,5 +1,7 @@
 package com.android.halanvendordiscovery.data.details.model.response
 
+import com.google.gson.annotations.SerializedName
+
 data class VendorRemoteModel(
     var id: String,
     var address: String,
@@ -11,5 +13,9 @@ data class VendorRemoteModel(
     var description: String?,
     var lat: Double,
     var long: Double,
-    var displayedOnApp: Boolean
+    var displayedOnApp: Boolean,
+    @SerializedName("HasPromoation")
+    var hasPromoation: Boolean,
+    @SerializedName("promotion_list")
+    var promotionList: ArrayList<String>?
 )

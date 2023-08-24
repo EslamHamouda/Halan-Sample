@@ -20,7 +20,7 @@ data class MerchantRemoteModel(
     var branchHeadName: String,
     @SerializedName("branch_head_phone")
     var branchHeadPhone: String,
-    var categories: String?,
+    var categories: ArrayList<String>?,
     var merchantId: String?,
     var vendor: VendorRemoteModel,
     var location: LocationRemoteModel
