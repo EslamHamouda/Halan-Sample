@@ -11,7 +11,7 @@ object MerchantRemoteDomainMapper{
         longitude = from.longitude,
         latitude = from.latitude,
         phoneNumber = from.phoneNumber,
-        vendorName = from.vendor?.name,
-        vendorArabicName = from.vendor?.arabicName
+        vendorName = from.vendor.name,
+        vendorArabicName = from.vendor.arabicName
     )
 }
