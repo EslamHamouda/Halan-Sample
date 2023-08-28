@@ -1,6 +1,6 @@
 package com.android.halanvendordiscovery.domain.vendors.model
 
-data class Vendor(
+data class VendorDomainModel(
     val id: String,
     val nameEn: String,
     val nameAr: String,

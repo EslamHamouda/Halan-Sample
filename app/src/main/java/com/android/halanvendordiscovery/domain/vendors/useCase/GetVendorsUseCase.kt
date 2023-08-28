@@ -2,7 +2,7 @@ package com.android.halanvendordiscovery.domain.vendors.useCase
 
 import com.android.halanvendordiscovery.domain.vendors.model.Page
 import com.android.halanvendordiscovery.domain.vendors.model.PagedList
-import com.android.halanvendordiscovery.domain.vendors.model.Vendor
+import com.android.halanvendordiscovery.domain.vendors.model.VendorDomainModel
 import com.android.halanvendordiscovery.domain.vendors.repo.VendorRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -16,7 +16,7 @@ class GetVendorsUseCase @Inject constructor(
         pageConfig: Page,
         categoryId: String?,
         searchKey: String?
-    ): PagedList<Vendor> {
+    ): PagedList<VendorDomainModel> {
         return withContext(Dispatchers.Default) {
             val vendors = repository.getVendors(pageConfig, categoryId, searchKey)
             vendors

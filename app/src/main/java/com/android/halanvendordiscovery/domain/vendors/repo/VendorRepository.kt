@@ -1,9 +1,9 @@
 package com.android.halanvendordiscovery.domain.vendors.repo
 
-import com.android.halanvendordiscovery.domain.vendors.model.Category
+import com.android.halanvendordiscovery.domain.vendors.model.CategoryDomainModel
 import com.android.halanvendordiscovery.domain.vendors.model.Page
 import com.android.halanvendordiscovery.domain.vendors.model.PagedList
-import com.android.halanvendordiscovery.domain.vendors.model.Vendor
+import com.android.halanvendordiscovery.domain.vendors.model.VendorDomainModel
 
 interface VendorRepository {
 
@@ -11,7 +11,7 @@ interface VendorRepository {
         pageConfig: Page,
         categoryId: String? = null,
         searchKey: String? = null
-    ): PagedList<Vendor>
+    ): PagedList<VendorDomainModel>
 
-    suspend fun getCategories(): List<Category>
+    suspend fun getCategories(): List<CategoryDomainModel>
 }
