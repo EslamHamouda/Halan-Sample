@@ -8,5 +8,5 @@ data class MerchantDomainModel(
     val latitude        : Double,
     val phoneNumber     : String,
     val vendorName      : String,
-    val vendorArabicName: String,
+    val vendorArabicName: String
 )
