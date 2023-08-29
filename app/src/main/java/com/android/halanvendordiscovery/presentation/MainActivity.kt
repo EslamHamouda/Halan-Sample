@@ -1,7 +1,8 @@
-package com.android.halanvendordiscovery
+package com.android.halanvendordiscovery.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.android.halanvendordiscovery.R
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
