@@ -1,16 +1,14 @@
 package com.android.halanvendordiscovery.presentation.details.adapter
 
-import android.content.Intent
-import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.android.halanvendordiscovery.databinding.ListItemMerchantBinding
 import com.android.halanvendordiscovery.domain.details.model.MerchantDomainModel
 
 class MerchantsAdapter(
-    private val list: List<MerchantDomainModel>
+    private val list: List<MerchantDomainModel>,
+    private val listener: OnItemClickListener
 ) : RecyclerView.Adapter<MerchantsAdapter.ViewHolder>() {
     inner class ViewHolder(private val binding: ListItemMerchantBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -18,15 +16,10 @@ class MerchantsAdapter(
             binding.tvMerchantName.text = item.arabicName
             binding.tvMerchantAddress.text = item.address
             binding.ivPhone.setOnClickListener {
-                val uri = "tel:${item.phoneNumber}"
-                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(uri))
-                startActivity(binding.root.context, intent, null)
+                listener.onPhoneClick(item.phoneNumber)
             }
             binding.ivMap.setOnClickListener {
-                val uri =
-                    "geo:${item.latitude}, ${item.longitude}?q=${item.latitude},${item.longitude}"
-                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(uri))
-                startActivity(binding.root.context, intent, null)
+                listener.onLocationClick(item.latitude, item.longitude)
             }
         }
     }
@@ -43,5 +36,10 @@ class MerchantsAdapter(
 
     override fun getItemCount(): Int {
         return list.size
+    }
+
+    interface OnItemClickListener {
+        fun onLocationClick(latitude: Double, longitude: Double)
+        fun onPhoneClick(phone: String)
     }
 }
