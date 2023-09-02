@@ -1,6 +1,5 @@
 package com.android.halanvendordiscovery.domain.vendors.useCase
 
-import com.android.halanvendordiscovery.domain.vendors.model.Page
 import com.android.halanvendordiscovery.domain.vendors.model.PagedList
 import com.android.halanvendordiscovery.domain.vendors.model.VendorDomainModel
 import com.android.halanvendordiscovery.domain.vendors.repo.VendorRepository
@@ -13,7 +12,7 @@ class GetVendorsUseCase @Inject constructor(
 ) {
 
     suspend operator fun invoke(
-        pageConfig: Page,
+        pageConfig: Int,
         categoryId: String?,
         searchKey: String?
     ): PagedList<VendorDomainModel> {

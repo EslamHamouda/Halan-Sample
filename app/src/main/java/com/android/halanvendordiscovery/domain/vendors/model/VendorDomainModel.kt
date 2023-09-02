@@ -9,5 +9,5 @@ data class VendorDomainModel(
     val long: Double,
     val phone: String,
     val hasPromotion: Boolean,
-    val marketingName: String,
+    val marketingName: String?,
 )
