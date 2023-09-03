@@ -21,17 +21,13 @@ class DetailsViewModel @Inject constructor(private val getMerchantsUseCase: GetM
         get() = _getMerchantsResponse
 
     fun getMerchants(vendorId: String) {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch {
             try {
-                val result = getMerchantsUseCase(vendorId)
-                withContext(Dispatchers.Main) {
-                    _getMerchantsResponse.value = DetailsStates.Loading(false)
-                }
+                val result = withContext(Dispatchers.IO) { getMerchantsUseCase(vendorId) }
+                _getMerchantsResponse.value = DetailsStates.Loading(false)
                 _getMerchantsResponse.value = DetailsStates.Success(result)
             } catch (throwable: Throwable) {
-                withContext(Dispatchers.Main) {
-                    _getMerchantsResponse.value = DetailsStates.Loading(false)
-                }
+                _getMerchantsResponse.value = DetailsStates.Loading(false)
                 _getMerchantsResponse.value = DetailsStates.Failure(throwable)
             }
         }

@@ -5,12 +5,13 @@ import android.view.View
 import android.widget.ProgressBar
 import com.google.android.material.snackbar.Snackbar
 
-fun ProgressBar.hideProgressBar() {
-    this.visibility = View.GONE
-}
-
-fun ProgressBar.showProgressBar() {
-    this.visibility = View.VISIBLE
+fun ProgressBar.isShowProgressBar(visible:Boolean) {
+    if(visible){
+        this.visibility = View.VISIBLE
+    }
+    else{
+        this.visibility = View.GONE
+    }
 }
 
 fun showSnackBar(msg: String, activity: Activity) {

@@ -7,20 +7,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.content.res.AppCompatResources
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.android.halanvendordiscovery.R
 import com.android.halanvendordiscovery.databinding.FragmentDetailsBinding
 import com.android.halanvendordiscovery.presentation.details.adapter.MerchantsAdapter
 import com.android.halanvendordiscovery.presentation.details.viewmodel.DetailsStates
 import com.android.halanvendordiscovery.presentation.details.viewmodel.DetailsViewModel
-import com.android.halanvendordiscovery.utils.hideProgressBar
-import com.android.halanvendordiscovery.utils.showProgressBar
+import com.android.halanvendordiscovery.utils.isShowProgressBar
 import com.android.halanvendordiscovery.utils.showSnackBar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -30,7 +28,6 @@ import kotlinx.coroutines.launch
 class DetailsFragment : Fragment() {
     private var _binding: FragmentDetailsBinding? = null
     private val binding get() = _binding!!
-
     private val viewModel: DetailsViewModel by viewModels()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -49,35 +46,34 @@ class DetailsFragment : Fragment() {
 
     private fun getMerchantsResponse() {
         lifecycleScope.launch {
-            viewModel.getMerchantsResponse.flowWithLifecycle(
-                lifecycle,
-                Lifecycle.State.STARTED
-            )
-                .collectLatest {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.getMerchantsResponse.collectLatest {
                     when (it) {
                         is DetailsStates.Loading -> {
-                            if (it.isLoading)
-                                binding.progressBar.progressBar.showProgressBar()
-                            else
-                                binding.progressBar.progressBar.hideProgressBar()
+                            binding.progressBar.progressBar.isShowProgressBar(it.isLoading)
                         }
 
                         is DetailsStates.Success -> {
                             binding.tvVendorName.text = it.value[0].vendorArabicName
-                            binding.rvMerchants.adapter = MerchantsAdapter(it.value, object :MerchantsAdapter.OnItemClickListener{
-                                override fun onLocationClick(latitude: Double, longitude: Double) {
-                                    val uri =
-                                        "geo:${latitude}, ${longitude}?q=${latitude},${longitude}"
-                                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(uri))
-                                    ContextCompat.startActivity(binding.root.context, intent, null)
-                                }
+                            binding.rvMerchants.adapter = MerchantsAdapter(
+                                it.value,
+                                object : MerchantsAdapter.OnItemClickListener {
+                                    override fun onLocationClick(
+                                        latitude: Double,
+                                        longitude: Double
+                                    ) {
+                                        val uri =
+                                            "geo:${latitude}, ${longitude}?q=${latitude},${longitude}"
+                                        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(uri))
+                                        startActivity(intent)
+                                    }
 
-                                override fun onPhoneClick(phone: String) {
-                                    val uri = "tel:${phone}"
-                                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(uri))
-                                    ContextCompat.startActivity(binding.root.context, intent, null)
-                                }
-                            })
+                                    override fun onPhoneClick(phone: String) {
+                                        val uri = "tel:${phone}"
+                                        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(uri))
+                                        startActivity(intent)
+                                    }
+                                })
                             setDividerItemDecoration()
                         }
 
@@ -91,6 +87,7 @@ class DetailsFragment : Fragment() {
                         }
                     }
                 }
+            }
         }
     }
 
