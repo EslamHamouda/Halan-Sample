@@ -4,7 +4,6 @@ import com.android.consumerfinancehalan.data.remote.service.VendorsService
 import com.android.consumerfinancehalan.data.repo.mapper.VendorsDataMapper
 import com.android.halanvendordiscovery.data.vendors.repo.mapper.CategoryDataMapper
 import com.android.halanvendordiscovery.domain.vendors.model.CategoryDomainModel
-import com.android.halanvendordiscovery.domain.vendors.model.Page
 import com.android.halanvendordiscovery.domain.vendors.model.PagedList
 import com.android.halanvendordiscovery.domain.vendors.model.VendorDomainModel
 import com.android.halanvendordiscovery.domain.vendors.repo.VendorRepository
@@ -20,13 +19,13 @@ class VendorsRepositoryImpl @Inject constructor(
 ) : VendorRepository {
 
     override suspend fun getVendors(
-        pageConfig: Page,
+        pageNumber: Int,
         categoryId: String?,
         searchKey: String?
     ): PagedList<VendorDomainModel> {
         return withContext(Dispatchers.IO) {
             val vendorsRemoteModels = service.getVendors(
-                pageNumber = pageConfig.number,
+                pageNumber = pageNumber,
                 categoryId = categoryId,
                 searchKey = searchKey,
             )
@@ -38,7 +37,7 @@ class VendorsRepositoryImpl @Inject constructor(
                 }
             PagedList(
                 value = vendors,
-                page = pageConfig,
+                page = pageNumber,
             )
         }
     }
