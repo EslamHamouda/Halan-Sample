@@ -1,0 +1,38 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingHorizontal="16dp"
+    android:paddingVertical="16dp">
+
+    <TextView
+        android:id="@+id/vendorTitleText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:lineHeight="25.6sp"
+        android:textColor="@color/vendor_header"
+        android:textFontWeight="500"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@id/vendorDetailsText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed"
+        tools:text="Dummy text" />
+
+    <TextView
+        android:id="@+id/vendorDetailsText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:lineHeight="22.4sp"
+        android:textColor="@color/vendor_subheader"
+        android:textFontWeight="400"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/vendorTitleText"
+        tools:text="hey hey" />
+</androidx.constraintlayout.widget.ConstraintLayout>
