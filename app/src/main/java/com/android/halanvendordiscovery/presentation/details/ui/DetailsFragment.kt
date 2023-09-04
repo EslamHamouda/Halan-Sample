@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.content.res.AppCompatResources
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -19,6 +18,7 @@ import com.android.halanvendordiscovery.presentation.details.adapter.MerchantsAd
 import com.android.halanvendordiscovery.presentation.details.viewmodel.DetailsStates
 import com.android.halanvendordiscovery.presentation.details.viewmodel.DetailsViewModel
 import com.android.halanvendordiscovery.utils.isShowProgressBar
+import com.android.halanvendordiscovery.utils.setDividerItemDecoration
 import com.android.halanvendordiscovery.utils.showSnackBar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -74,7 +74,7 @@ class DetailsFragment : Fragment() {
                                         startActivity(intent)
                                     }
                                 })
-                            setDividerItemDecoration()
+                            binding.rvMerchants.setDividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL, R.drawable.separator)
                         }
 
                         is DetailsStates.Failure -> {
@@ -89,14 +89,6 @@ class DetailsFragment : Fragment() {
                 }
             }
         }
-    }
-
-    private fun setDividerItemDecoration() {
-        val divider = DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL)
-        AppCompatResources.getDrawable(requireContext(), R.drawable.separator)?.let {
-            divider.setDrawable(it)
-        }
-        binding.rvMerchants.addItemDecoration(divider)
     }
 
     override fun onDestroyView() {
