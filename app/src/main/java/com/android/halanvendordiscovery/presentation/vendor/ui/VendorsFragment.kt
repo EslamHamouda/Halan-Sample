@@ -122,11 +122,12 @@ class VendorsFragment : Fragment(), CategoryClickListener, VendorClickListener {
     }
 
     private fun setupVendorsRecyclerView() {
-        val recyclerView = view?.findViewById<RecyclerView>(R.id.vendorsRecyclerView)
-        recyclerView?.setHasFixedSize(true)
-        recyclerView?.adapter = vendorsAdapter
-        recyclerView?.layoutManager = LinearLayoutManager(requireContext())
-        setDividerItemDecoration()
+        binding.apply {
+            vendorsRecyclerView.setHasFixedSize(true)
+            vendorsRecyclerView.adapter = vendorsAdapter
+            vendorsRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+            setDividerItemDecoration()
+        }
     }
 
     private fun setupCategoriesRecyclerView() {

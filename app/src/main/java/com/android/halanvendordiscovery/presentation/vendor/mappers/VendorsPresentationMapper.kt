@@ -13,6 +13,6 @@ object VendorsPresentationMapper {
         long = from.long,
         phone = from.phone,
         hasPromotion = from.hasPromotion,
-        marketingName = from?.marketingName,
+        marketingName = from.marketingName,
     )
 }

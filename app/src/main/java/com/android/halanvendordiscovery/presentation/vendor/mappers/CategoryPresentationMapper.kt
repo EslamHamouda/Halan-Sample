@@ -7,7 +7,7 @@ import com.android.halanvendordiscovery.domain.vendors.model.CategoryDomainModel
 object CategoryPresentationMapper{
     fun toCategoryUiModel(from: CategoryDomainModel) = CategoryUiModel(
         id = from.id,
-        nameAr = from?.nameAr,
-        nameEn = from?.nameEn,
+        nameAr = from.nameAr,
+        nameEn = from.nameEn,
         )
 }

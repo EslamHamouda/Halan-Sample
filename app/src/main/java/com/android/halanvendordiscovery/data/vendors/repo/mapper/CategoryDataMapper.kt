@@ -6,7 +6,7 @@ import com.android.halanvendordiscovery.domain.vendors.model.CategoryDomainModel
 object CategoryDataMapper {
     fun toCategoryDomainModel(from: CategoryRemoteModel) = CategoryDomainModel(
         id = from.id,
-        nameAr = from.nameAr,
-        nameEn = from.nameEn
+        nameAr = from.arabicName,
+        nameEn = from.name
     )
 }
