@@ -16,7 +16,11 @@ import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearSmoothScroller
+import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.SnapHelper
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.android.consumerfinancehalan.presentation.model.CategoriesUiState
 import com.android.consumerfinancehalan.presentation.model.CategoryUiModel
 import com.android.consumerfinancehalan.presentation.model.VendorUiModel
@@ -127,6 +131,7 @@ class VendorsFragment : Fragment(), CategoryClickListener, VendorClickListener {
             vendorsRecyclerView.adapter = vendorsAdapter
             vendorsRecyclerView.layoutManager = LinearLayoutManager(requireContext())
             setDividerItemDecoration()
+            swipeToRefresh(swipeRefreshLayout)
         }
     }
 
@@ -136,6 +141,7 @@ class VendorsFragment : Fragment(), CategoryClickListener, VendorClickListener {
             categoriesRecyclerView.adapter = categoriesAdapter
             categoriesRecyclerView.layoutManager =
                 LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false);
+            LinearSnapHelper().attachToRecyclerView(categoriesRecyclerView)
         }
     }
 
@@ -158,6 +164,7 @@ class VendorsFragment : Fragment(), CategoryClickListener, VendorClickListener {
                     is VendorsUiState.Error -> {
                         binding.progressBar.progressBar.hideProgressBar()
                         showSnackBar(it.throwable.message.toString(), requireActivity())
+                        Log.d("Omar", it.throwable.message.toString())
                     }
                 }
             }
@@ -167,6 +174,7 @@ class VendorsFragment : Fragment(), CategoryClickListener, VendorClickListener {
     override fun onCategoryClick(category: CategoryUiModel) {
         this.categoryId = category.id
         viewModel.selectCategory(category, binding.vendorSearchBar.query.toString())
+        binding.vendorsRecyclerView.scrollToPosition(0)
     }
 
     override fun onVendorClick(vendor: VendorUiModel) {
@@ -180,6 +188,13 @@ class VendorsFragment : Fragment(), CategoryClickListener, VendorClickListener {
             divider.setDrawable(it)
         }
         binding.vendorsRecyclerView.addItemDecoration(divider)
+    }
+
+    private fun swipeToRefresh(swipeRefreshLayout: SwipeRefreshLayout){
+        swipeRefreshLayout.setOnRefreshListener {
+            swipeRefreshLayout.isRefreshing = false
+            viewModel.fetchVendors(categoryId, binding.vendorSearchBar.query.toString())
+        }
     }
 
     override fun onDestroy() {
