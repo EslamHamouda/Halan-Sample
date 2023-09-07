@@ -17,8 +17,8 @@ import com.android.halanvendordiscovery.databinding.FragmentDetailsBinding
 import com.android.halanvendordiscovery.presentation.details.adapter.MerchantsAdapter
 import com.android.halanvendordiscovery.presentation.details.viewmodel.DetailsStates
 import com.android.halanvendordiscovery.presentation.details.viewmodel.DetailsViewModel
-import com.android.halanvendordiscovery.utils.isShowProgressBar
 import com.android.halanvendordiscovery.utils.setDividerItemDecoration
+import com.android.halanvendordiscovery.utils.showProgressBar
 import com.android.halanvendordiscovery.utils.showSnackBar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -50,7 +50,7 @@ class DetailsFragment : Fragment() {
                 viewModel.getMerchantsResponse.collectLatest {
                     when (it) {
                         is DetailsStates.Loading -> {
-                            binding.progressBar.progressBar.isShowProgressBar(it.isLoading)
+                            binding.progressBar.progressBar.showProgressBar()
                         }
 
                         is DetailsStates.Success -> {

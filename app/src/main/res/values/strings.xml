@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Halan Vendor Discovery</string>
+    <string name="warehouses_locations">أماكن الشراء</string>
+    <string name="whereYouCanBuy">شوف ممكن تشتري منين</string>
+    <string name="search_hint">ابحث فى أماكن الشراء</string>
+    <string name="halan">حالا!</string>
 </resources>
